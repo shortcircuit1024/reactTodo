@@ -1,4 +1,3 @@
-
 var $ = require('jquery');
 
 module.exports = {
@@ -6,7 +5,6 @@ module.exports = {
     var filteredTodos = todos;
 
     // Filter by showCompleted
-
     filteredTodos = filteredTodos.filter((todo) => {
       return !todo.completed || showCompleted;
     });
@@ -17,13 +15,11 @@ module.exports = {
       return searchText.length === 0 || text.indexOf(searchText) > -1;
     });
 
-
-    //Sort by non-completed first
-
+    // Sort todos with non-completed first
     filteredTodos.sort((a, b) => {
-      if(!a.completed && b.completed) {
+      if (!a.completed && b.completed) {
         return -1;
-      } else if ( a.completed && !b.completed) {
+      } else if (a.completed && !b.completed) {
         return 1;
       } else {
         return 0;
@@ -32,4 +28,4 @@ module.exports = {
 
     return filteredTodos;
   }
-}
+};
