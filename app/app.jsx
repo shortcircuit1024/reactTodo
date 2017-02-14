@@ -8,14 +8,7 @@ var TodoAPI = require('TodoAPI');
 var actions = require('actions');
 var store = require('configureStore').configure();
 
-store.subscribe(() => {
-  var state = store.getState();
-    console.log('New State', store.getState());
-    TodoAPI.setTodos(state.todos);
-})
-
-var intialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(intialTodos));
+store.dispatch(actions.startAddTodos());
 
 ReactDOM.render(
     <Provider store={store}><TodoApp/></Provider>, document.getElementById('app'));

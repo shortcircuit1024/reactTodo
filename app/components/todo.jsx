@@ -20,7 +20,7 @@ export var Todo = React.createClass({
 
         return (
             <div className="list-group-item" onClick={() => {
-                dispatch(actions.toggleTodo(id));
+                dispatch(actions.startToggleTodo(id, !completed));
             }}>
                 <span className="row"><input type="checkbox" checked={completed} className="col-xs-1" style={{margin: 'auto'}}/>
                 <span className="col-xs-11 row"><p className="col-xs-10 offset-1" style={{marginTop: '0%', marginBottom: '0%'}}>{text}</p>
