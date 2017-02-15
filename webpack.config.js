@@ -11,10 +11,6 @@ module.exports = {
     jquery: 'jQuery'
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery'
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
         warnings: false
@@ -51,6 +47,5 @@ module.exports = {
         exclude: /(node_modules|bower_components)/
       }
     ]
-  },
-  devtool: process.env.NODE_ENV === 'production' ? undefined : 'cheap-module-eval-source-map'
+  }
 };

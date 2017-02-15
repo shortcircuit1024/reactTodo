@@ -1,6 +1,5 @@
+import firebase, {firebaseRef} from 'app/firebase';
 import moment from 'moment';
-
-import firebase, {firebaseRef} from 'app/firebase/';
 
 export var setSearchText = (searchText) => {
   return {
@@ -25,13 +24,12 @@ export var addTodo = (todo) => {
 export var startAddTodo = (text) => {
   return (dispatch, getState) => {
     var todo = {
-      text,
-      completed: false,
-      createdAt: moment().unix(),
-      completedAt: null
+        text,
+        completed: false,
+        createdAt: moment().unix(),
+        completedAt: null
     };
     var todoRef = firebaseRef.child('todos').push(todo);
-
     return todoRef.then(() => {
       dispatch(addTodo({
         ...todo,
@@ -52,18 +50,16 @@ export var startAddTodos = () => {
   return (dispatch, getState) => {
     var todosRef = firebaseRef.child('todos');
 
-    return todosRef.once('value').then((snapshot) => {
+    todosRef.once('value').then((snapshot) => {
       var todos = snapshot.val() || {};
-      var parsedTodos = [];
-
+      var parasedTodos = [];
       Object.keys(todos).forEach((todoId) => {
-        parsedTodos.push({
+        parasedTodos.push({
           id: todoId,
           ...todos[todoId]
         });
       });
-
-      dispatch(addTodos(parsedTodos));
+      dispatch(addTodos(parasedTodos));
     });
   };
 };
@@ -82,10 +78,9 @@ export var startToggleTodo = (id, completed) => {
     var updates = {
       completed,
       completedAt: completed ? moment().unix() : null
-    };
-
+    }
     return todoRef.update(updates).then(() => {
-      dispatch(updateTodo(id, updates));
+      dispatch(updateTodo(id, updates))
     });
   };
 };
